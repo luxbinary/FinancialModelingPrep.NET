@@ -1,13 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net7.0;net8.0</TargetFrameworks>
+		<TargetFramework>net10.0</TargetFramework>
 		<RootNamespace>MatthiWare.FinancialModelingPrep</RootNamespace>
 		<PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<Company>MatthiWare</Company>
 		<PackageId>MatthiWare.FinancialModelingPrep</PackageId>
-		<Description>FinancialModelingPrep API Client written in .NET 8</Description>
+		<Description>FinancialModelingPrep API Client written in .NET 10</Description>
 		<Copyright>Copyright Matthias Beerens 2021</Copyright>
 		<Product>FinancialModelingPrep API Client</Product>
 		<Authors>Matthias Beerens</Authors>
@@ -27,16 +27,10 @@
 		<DocumentationFile>D:\Source\Repos\FinancialModelingPrep.NET\FinancialModelingPrepApi\FinancialModelingPrepApi.xml</DocumentationFile>
 	</PropertyGroup>
 
-	<ItemGroup Condition="'$(TargetFramework)' == 'net8.0'">
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Http" Version="9.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.0" />
-	</ItemGroup>
-
-	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0'">
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.2" />
-		<PackageReference Include="Microsoft.Extensions.Http" Version="8.0.1" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.2" />
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.9" />
+		<PackageReference Include="Microsoft.Extensions.Http" Version="10.0.9" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.9" />
 	</ItemGroup>
 	
 	<ItemGroup>

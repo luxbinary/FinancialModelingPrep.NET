@@ -206,6 +206,54 @@ namespace MatthiWare.FinancialModelingPrep.Core.CompanyValuation
             return client.GetJsonAsync<List<StockNewsResponse>>(url, pathParams, queryString);
         }
 
+        public async Task<ApiResponse<List<StockNewsResponse>>> SearchStockNewsAsync(string symbol, string from, string to, int? page = 0, int? limit = 20)
+        {
+            if (string.IsNullOrWhiteSpace(symbol))
+            {
+                throw new ArgumentException("A ticker symbol is required.", nameof(symbol));
+            }
+
+            const string url = "[version]/news/stock";
+
+            var pathParams = new NameValueCollection()
+            {
+                { "version", ApiVersion.stable.ToString() },
+            };
+
+            var queryString = new QueryStringBuilder();
+
+            queryString.Add("symbols", symbol);
+
+            if (!string.IsNullOrWhiteSpace(from))
+            {
+                queryString.Add("from", from);
+            }
+
+            if (!string.IsNullOrWhiteSpace(to))
+            {
+                queryString.Add("to", to);
+            }
+
+            if (page != null)
+            {
+                queryString.Add("page", page);
+            }
+
+            if (limit != null)
+            {
+                queryString.Add("limit", limit);
+            }
+
+            var result = await client.GetJsonAsync<List<StockNewsResponse>>(url, pathParams, queryString);
+
+            if (result.HasError)
+            {
+                return ApiResponse.FromError<List<StockNewsResponse>>(result.Error);
+            }
+
+            return ApiResponse.FromSucces(result.Data);
+        }
+
         public Task<ApiResponse<List<StockNewsResponse>>> GetLatestStockNewsAsync(int? limit = 50)
         {
             const string url = "[version]/stock_news";

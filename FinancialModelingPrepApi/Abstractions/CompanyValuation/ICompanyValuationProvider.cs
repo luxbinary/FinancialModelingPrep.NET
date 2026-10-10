@@ -43,6 +43,7 @@ namespace MatthiWare.FinancialModelingPrep.Abstractions.CompanyValuation
         public Task<ApiResponse<List<IncomeStatementResponse>>> GetIncomeStatementAsync(string symbol, Period period = Period.Quarter, int? limit = 40);
 
         public Task<ApiResponse<List<StockNewsResponse>>> GetLatestStockNewsAsync(int? limit = 50);
+        public Task<ApiResponse<List<StockNewsResponse>>> SearchStockNewsAsync(string symbol, string from, string to, int? page = 0, int? limit = 20);
         public Task<ApiResponse<List<StockNewsResponse>>> GetStockNewsAsync(string symbol, int? limit = 50);
         public Task<ApiResponse<List<StockNewsResponse>>> GetStockNewsAsync(IEnumerable<string> symbols, int? limit = 50);
 

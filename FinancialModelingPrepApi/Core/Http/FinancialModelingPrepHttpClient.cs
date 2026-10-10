@@ -17,8 +17,6 @@ namespace MatthiWare.FinancialModelingPrep.Core.Http
         private readonly IRequestRateLimiter rateLimiter;
         private readonly ILogger<FinancialModelingPrepHttpClient> logger;
         private readonly JsonSerializerOptions jsonSerializerOptions;
-        private const string EmptyArrayResponse = "[ ]";
-        private const string EmptyArrayResponse2 = "[]";
         private const string ErrorMessageResponse = "Error Message";
 
         public FinancialModelingPrepHttpClient(HttpClient client, FinancialModelingPrepOptions options,
@@ -63,12 +61,6 @@ namespace MatthiWare.FinancialModelingPrep.Core.Http
                     var errorData = JsonSerializer.Deserialize<ErrorResponse>(response.Data);
 
                     return ApiResponse.FromError<string>(errorData.ErrorMessage);
-                }
-
-                if (response.Data.Equals(EmptyArrayResponse, StringComparison.OrdinalIgnoreCase) || 
-                    response.Data.Equals(EmptyArrayResponse2, StringComparison.OrdinalIgnoreCase))
-                {
-                    return ApiResponse.FromError<string>("Invalid parameters");
                 }
 
                 return ApiResponse.FromSucces(response.Data);

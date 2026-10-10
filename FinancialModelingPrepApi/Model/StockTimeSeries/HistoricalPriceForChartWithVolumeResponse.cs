@@ -20,6 +20,6 @@ namespace MatthiWare.FinancialModelingPrep.Model.StockTimeSeries
         public double Close { get; set; }
 
         [JsonPropertyName("volume")]
-        public int Volume { get; set; }
+        public double Volume { get; set; }
     }
 }
